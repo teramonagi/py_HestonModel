@@ -3,14 +3,14 @@ import numpy as np
 import matplotlib.pyplot as plt
 from black_sholes import implied_volatility
 from option import CallOption
-from model import Model
+from model import HestonModel
 
 #Number of time steps
 num_steps = 150
 #Number of monte carlo paths
-num_paths = 10000
+num_paths = 100
 #Strike
-K = np.arange(0.5, 1.6, 0.5)
+K = np.arange(0.8, 2.0, 0.2)
 #maturity
 T = 5.0
 #Initial stock price
@@ -32,7 +32,7 @@ rho = -0.6
 imp_vol = np.array([])
 for k in K:
     call_option = CallOption(k, T)
-    heston = Model(num_steps, num_paths, s0, v0, r, theta, kappa, lamda, rho)
+    heston = HestonModel(num_steps, num_paths, s0, v0, r, theta, kappa, lamda, rho)
     price = heston.price(call_option)
     #calc implied volatility
     imp_vol = np.append(imp_vol, implied_volatility(price, s0, k, T, r, 'C'))

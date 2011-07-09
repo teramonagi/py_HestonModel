@@ -2,7 +2,8 @@
 from math import *
 from numpy import arange, array, zeros
 from numpy.random import standard_normal
-class Model: 
+
+class HestonModel: 
     def __init__(self, num_steps, num_paths, s0, v0, r,theta, kappa, lamda, rho):
         self._num_steps = num_steps
         self._num_paths = num_paths
